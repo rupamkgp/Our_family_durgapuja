@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #1A1A1A;
+    --foreground: #FFFFF0;
+  }
+
+  html {
+    scroll-behavior: auto !important; /* Managed by Lenis */
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-x-hidden antialiased;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.4), 0 0 20px rgba(255, 215, 0, 0.2);
+  }
+  
+  .glass-effect {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+}
+
+/* Custom Selection */
+::selection {
+  background-color: theme('colors.puja.gold');
+  color: theme('colors.puja.dark');
+}
+
+/* Hide Scrollbar but keep functionality */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: theme('colors.puja.red-light');
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.puja.red');
+}
