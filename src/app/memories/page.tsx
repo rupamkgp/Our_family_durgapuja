@@ -5,12 +5,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 const years = [
-    { year: '2026', img: 'https://images.unsplash.com/photo-1541701391482-42173fec72ff?q=80&w=2069&auto=format&fit=crop' },
-    { year: '2025', img: 'https://images.unsplash.com/photo-1601058268499-e52658b8bb88?q=80&w=2070&auto=format&fit=crop' },
-    { year: '2024', img: 'https://images.unsplash.com/photo-1571408103348-1dbde1fe9b78?q=80&w=2070&auto=format&fit=crop' },
-    { year: '2023', img: 'https://images.unsplash.com/photo-1541701391482-42173fec72ff?q=80&w=2069&auto=format&fit=crop' },
-    { year: '2022', img: 'https://images.unsplash.com/photo-1601058268499-e52658b8bb88?q=80&w=2070&auto=format&fit=crop' },
-    { year: '2021', img: 'https://images.unsplash.com/photo-1571408103348-1dbde1fe9b78?q=80&w=2070&auto=format&fit=crop' },
+    { year: '2026', img: '' },
+    { year: '2025', img: '/puja2025/1000014566.jpg' },
+    { year: '2024', img: '/puja2024/DSC_0971.JPG' },
+    { year: '2023', img: '/puja2023/IMG_20231021_181254_1.jpg' },
+    { year: '2022', img: '/puja2022/IMG20221001200203.jpg' },
+    { year: '2021', img: '/puja2021/DSC_0137.JPG' },
+    { year: '2020', img: '/puja2020/WhatsApp Image 2021-09-25 at 11.15.56 AM.jpeg' },
 ]
 
 export default function MemoriesIndexPage() {
@@ -39,18 +40,31 @@ export default function MemoriesIndexPage() {
                         transition={{ duration: 0.5, delay: 0.1 * index }}
                     >
                         <Link href={`/memories/${item.year}`} className="block relative aspect-[4/3] rounded-2xl overflow-hidden group">
-                            <Image
-                                src={item.img}
-                                alt={`${item.year} Memories`}
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
+                            {item.img ? (
+                                <Image
+                                    src={item.img}
+                                    alt={`${item.year} Memories`}
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                            ) : (
+                                <div className="absolute inset-0 bg-puja-dark/40 flex items-center justify-center">
+                                    <div className="w-16 h-16 border-2 border-puja-gold/20 rounded-full animate-pulse-slow" />
+                                </div>
+                            )}
                             <div className="absolute inset-0 bg-gradient-to-t from-puja-dark via-puja-dark/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <span className="font-heading text-4xl font-bold text-puja-ivory translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
                                     {item.year}
                                 </span>
                             </div>
+                            {item.year === '2026' && (
+                                <div className="absolute top-4 right-4 z-10">
+                                    <span className="bg-puja-gold text-puja-dark px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                                        Upcoming
+                                    </span>
+                                </div>
+                            )}
                         </Link>
                     </motion.div>
                 ))}
